@@ -1,0 +1,230 @@
+/* CSS para vistas de All y Detalle */
+
+/* ALL */
+
+#alerta{
+    font-family: "Georgia";
+    font-weight: bold;
+}
+
+.container{
+    width: 100%;
+}
+
+#ListaCompleta{
+    margin-top: 10px;
+    width: inherit;
+}
+
+#ListaCompleta #Add{
+    padding: 1rem;
+}
+
+#ListaCompleta .add{
+    float: right;
+    margin-right: 1rem;
+    padding: 0.1rem 1rem;
+    text-align: right;
+    background: #e35768;  
+    color: #fff;
+    text-decoration: none;
+    width:8rem;
+    box-shadow: 2px 3px 3px black;
+    font-family: "Georgia";
+    font-weight: bold;
+    border-radius: 1rem;
+ }
+
+ #ListaCompleta .add:hover{
+    background: #a53e4a;  
+    color: #fff;
+    box-shadow: 2px 3px 3px black;
+ }
+
+#tablaLista{
+    margin: auto;
+    text-align: center;
+}
+
+#row-prestamos{
+    margin: auto;
+    text-align: center;
+    font-family: 'Lucida Sans';
+}
+
+.upside{
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.upside .Inicio {
+    margin: auto;
+    padding: 0.8rem 2rem;
+    text-align: center;
+    background: #221010;  
+    color: #cfcfcf;
+    text-decoration: none;
+    width: 50%;
+    box-shadow: 2px 3px 3px black;
+    font-family: "Georgia";
+    font-weight: bold;
+    border-radius: 1rem;
+  }
+
+  .upside .Inicio:hover{
+    background: #2b1515;
+  }
+
+  /* DETAIL */
+.card-dfooter{
+    margin-top: 1rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+}
+
+.card-dfooter .card-link{
+    float: right;
+    margin-right: 1rem;
+    padding: 0.4rem 2rem;
+    text-align: center;
+    background: #dc2c41;  
+    color: white;
+    text-decoration: none;
+    width: 10rem;
+    box-shadow: 2px 3px 3px black;
+    font-family: "Georgia";
+    font-weight: bold;
+    border-radius: 1rem;
+}
+
+.card-dfooter .card-link:hover{
+    background: #cc2236;
+}
+
+#ListaCompleta #ver{
+    margin-right: 1rem;
+    padding: 0.1rem 1rem;
+    text-align: center;
+    background: #f2f2f2;  
+    color: black;
+    text-decoration: none;
+    width: 8rem;
+    box-shadow: 2px 3px 3px black;
+    font-family: "Georgia";
+    font-weight: bold;
+    border-radius: 1rem;
+}
+
+#ListaCompleta #ver:hover{
+    background: black;  
+    color: white;
+    box-shadow: 2px 3px 3px black;
+}
+
+#ListaCompleta #eliminar{
+    margin-right: 0.5rem;
+    padding: 0.1rem 0.5rem;
+    text-align: center;
+    background: #dc2c41;  
+    color: white;
+    text-decoration: none;
+    width: 8rem;
+    box-shadow: 2px 3px 3px black;
+    font-family: "Georgia";
+    font-weight: bold;
+    border-radius: 1rem;
+}
+
+#ListaCompleta #eliminar:hover{
+    background: #cc2236;  
+    color: white;
+    box-shadow: 2px 3px 3px black;
+}
+
+#ListaCompleta #editar{
+    margin-right: 1rem;
+    padding: 0.1rem 0.5rem;
+    text-align: center;
+    background: #c9c9c9;  
+    color: black;
+    text-decoration: none;
+    width: 10rem;
+    box-shadow: 2px 3px 3px black;
+    font-family: "Georgia";
+    font-weight: bold;
+    border-radius: 1rem;
+}
+
+#ListaCompleta #editar:hover{
+    background: #bbbbbb;  
+    color: black;
+    box-shadow: 2px 3px 3px black;
+}
+
+.table{
+    text-align: center;
+    table-layout: fixed;
+    font-size: 1.1vw;
+    margin-bottom: 5rem;
+}
+
+#ListaCompleta #verR{
+    margin-right: 0.5rem;
+    padding: 0.1rem 1rem;
+    text-align: center;
+    background: #f2f2f2;  
+    color: black;
+    text-decoration: none;
+    width: 2rem;
+    box-shadow: 2px 3px 3px black;
+    font-family: "Georgia";
+    font-weight: bold;
+    border-radius: 1rem;
+}
+
+#ListaCompleta #verR:hover{
+    background: black;  
+    color: white;
+    box-shadow: 2px 3px 3px black;
+}
+
+#ListaCompleta #eliminarR{
+    margin-right: 0.5rem;
+    padding: 0.1rem 0.5rem;
+    text-align: center;
+    background: #dc2c41;  
+    color: white;
+    text-decoration: none;
+    width: 5rem;
+    box-shadow: 2px 3px 3px black;
+    font-family: "Georgia";
+    font-weight: bold;
+    border-radius: 1rem;
+}
+
+#ListaCompleta #eliminarR:hover{
+    background: #cc2236;  
+    color: white;
+    box-shadow: 2px 3px 3px black;
+}
+
+#ListaCompleta #editarR{
+    margin-right: 0.3rem;
+    padding: 0.1rem 0.5rem;
+    text-align: left;
+    background: #c9c9c9;  
+    color: black;
+    text-decoration: none;
+    width: 5rem;
+    box-shadow: 2px 3px 3px black;
+    font-family: "Georgia";
+    font-weight: bold;
+    border-radius: 1rem;
+}
+
+#ListaCompleta #editarR:hover{
+    background: #bbbbbb;  
+    color: black;
+    box-shadow: 2px 3px 3px black;
+}

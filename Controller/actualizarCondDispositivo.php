@@ -13,14 +13,7 @@ if ($_POST) {
     $allDispositivo = $Dispositivo->seleccionarAllDispositivo();
     $TipoDispositivo = new TipoDispositivo();
     $allTipoDispositivo = $TipoDispositivo->seleccionarAllTipoDispositivo();
-        
-    //Select de suministros
-    $PrestamoSuministro = new PrestamoSuministro();
-    $allPrestamoSuministro = $PrestamoSuministro->seleccionarAllPrestamoSuministro();
-    $Suministro = new Suministro();
-    $allSuministro = $Suministro->selectAllSuministro();
-    $TipoSuministro = new TipoSuministro();
-    $allTipoSuministro = $TipoSuministro->selectAllTipoSuministro();
+    
     $devoluciones = new Devolucion();
     $last =$devoluciones->selectLastAll();
     $msg = NULL;

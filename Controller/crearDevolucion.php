@@ -20,13 +20,6 @@ if ($_POST) {
         $TipoDispositivo = new TipoDispositivo();
         $allTipoDispositivo = $TipoDispositivo->seleccionarAllTipoDispositivo();
             
-        //Select de suministros
-        $PrestamoSuministro = new PrestamoSuministro();
-        $allPrestamoSuministro = $PrestamoSuministro->seleccionarAllPrestamoSuministro();
-        $Suministro = new Suministro();
-        $allSuministro = $Suministro->selectAllSuministro();
-        $TipoSuministro = new TipoSuministro();
-        $allTipoSuministro = $TipoSuministro->selectAllTipoSuministro();
 
         $msg = "NUEVA Devolución creada.";
         include "view/crearDevolucionall.php";

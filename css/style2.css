@@ -1,0 +1,39 @@
+/* CSS para vistas de Formulario Crear y Actualizar */
+
+.form-group{
+    margin-top: 1rem;
+    margin-left: 2rem;
+}
+
+.form-control{
+    width: 10rem;
+}
+
+.boton-form{
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+.label_form{
+    width: 20rem;
+    text-align: left;
+}
+
+#input-form{
+    text-align: right;
+}
+
+#dropdown-divider-form{
+    width: 40rem;
+}
+
+#submit-button{
+    background: black;
+    border-color: black;
+    border-radius: 1rem;
+}
+
+#submit-button:hover{
+    background:lightslategray ;
+    border-color: lightslategray;
+}
