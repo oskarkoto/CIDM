@@ -21,5 +21,8 @@
          <div class="container" id="OpcionesMP">
             <a href="?c=crearReporte" class="card-link">Reportes</a>
         </div>
+        <div style="font-size: 6px;color:whitesmoke;" class="container">
+            <p>Todos los derechos reservados. Heredia, Costa Rica, año 2022</p>
+        </div>
     </div>
 </div>
