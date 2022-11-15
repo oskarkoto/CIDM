@@ -3,12 +3,10 @@
 include_once "model/Connection.php";
 include_once 'model/Prestamo.php';
 include_once 'model/PrestamoDispositivo.php';
-include_once 'model/PrestamoSuministro.php';
 include_once "model/EstadoDevolucionGeneral.php";
 include_once "model/EstadoDevolucion.php";
 include_once "model/CondicionActual.php";
 include_once "model/Dispositivo.php";
-include_once "model/Suministro.php";
 
 
 class Devolucion {

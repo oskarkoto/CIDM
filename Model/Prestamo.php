@@ -1,7 +1,7 @@
 <!--Modelo de prestamo.-->
 <?php
 include_once "model/Connection.php";
-include_once "model/Tecnico.php";
+include_once "model/Ingeniero.php";
 
 class Prestamo {
     

@@ -9,7 +9,7 @@
 </div>
 <div class="card" id="ListaCompleta">
     <div class="card-title">
-        <h2> DETALLES DE PRESTAMO DE Dispositivo </h2>
+        <h2> DETALLES DE PRESTAMO DE DISPOSITIVO </h2>
     </div>
     <?php
         foreach ($selectPrestamoDispositivo as $value) {    ?>

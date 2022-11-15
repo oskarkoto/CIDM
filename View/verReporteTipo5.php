@@ -3,13 +3,13 @@
         <h6 id = "alerta"><?php echo $msg; ?> </h6>
     </div>
 <?php } ?>    
-<!-- Vista de Reporte Tipo 6 -->
+<!-- Vista de Reporte Tipo 5 -->
 <div class="upside">
     <a href="index.php" class="Inicio">« Inicio</a>
 </div>
 <div class="card" id="ListaCompleta">
     <div class="card-title">
-        <h2> DispositivoS CON INVENTARIO BAJO </h2>
+        <h2> DISPOSITIVOS CON INVENTARIO BAJO </h2>
     </div>
     <table class="table">
         <thead>

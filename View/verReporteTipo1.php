@@ -9,7 +9,7 @@
 </div>
 <div class="card" id="ListaCompleta">
     <div class="card-title">
-        <h2> DispositivoS DAÑADOS </h2>
+        <h2> DISPOSITIVOS DAÑADOS </h2>
     </div>
     <table class="table">
         <thead>

@@ -3,7 +3,7 @@
         <h6 id = "alerta"><?php echo $msg; ?> </h6>
     </div>
 <?php } ?>    
-<!-- Vista de Reporte Tipo 5 -->
+<!-- Vista de Reporte Tipo 4 -->
 <div class="upside">
     <a href="index.php" class="Inicio">« Inicio</a>
 </div>

@@ -16,7 +16,6 @@
         <select name="forma" onchange="location = this.value;">
             <option value="?c=detalleAllPrestamo" selected>Préstamo</option>
             <option value="?c=detalleAllPrestamoDispositivo">Préstamo de Dispositivo</option>
-            <option value="?c=detalleAllPrestamoSuministro">Préstamo de Suministro</option>
         </select>
         <!-- Icono filtro -->
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
@@ -46,8 +45,8 @@
         ?>
             <tr>
                 <td><?php echo $value->idPrestamo; ?></td>
-                <?php foreach ($allTecnico as $tecnico) { if ($tecnico->idTecnico == $value->idTecnico){ ?>
-                <td><?php echo $tecnico->primerNombre; ?> <?php echo $tecnico->primerApellido; ?></td>
+                <?php foreach ($allTecnico as $ingeniero) { if ($ingeniero->idTecnico == $value->idTecnico){ ?>
+                <td><?php echo $ingeniero->primerNombre; ?> <?php echo $ingeniero->primerApellido; ?></td>
                 <?php } } ?>
                 <td><?php echo $value->fechaPrestamo; ?></td>
                 <td><?php echo $value->fechaEsperadaDevolucion; ?></td>

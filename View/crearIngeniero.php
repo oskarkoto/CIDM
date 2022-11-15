@@ -1,4 +1,4 @@
-<!-- Vista crear tecnicos -->
+<!-- Vista crear ingenieros -->
 <div class="upside">
     <a href="?c=detalleAllIngeniero" class="Inicio">« Regresar </a>
 </div>

@@ -4,7 +4,7 @@
 </div>
 <div class="card" id="ListaCompleta">
     <div class="card-title">
-        <h2> CREAR NUEVO TIPO DE Dispositivo </h2>
+        <h2> CREAR NUEVO TIPO DE DISPOSITIVO </h2>
     </div>
     <form method="POST" action="?c=crearTipoDispositivo" class='formulario'>        
         <div class="form-group" align="center" >

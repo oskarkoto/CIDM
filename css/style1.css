@@ -3,7 +3,7 @@
 /* ALL */
 
 #alerta{
-    font-family: "Georgia";
+    font-family: "Arial", Arial, sans-serif;
     font-weight: bold;
 }
 
@@ -30,7 +30,7 @@
     text-decoration: none;
     width:8rem;
     box-shadow: 2px 3px 3px black;
-    font-family: "Georgia";
+    font-family: "Arial", Arial, sans-serif;
     font-weight: bold;
     border-radius: 1rem;
  }
@@ -62,18 +62,18 @@
     margin: auto;
     padding: 0.8rem 2rem;
     text-align: center;
-    background: #221010;  
+    background: #245a81;  
     color: #cfcfcf;
     text-decoration: none;
     width: 50%;
     box-shadow: 2px 3px 3px black;
-    font-family: "Georgia";
+    font-family: "Arial", Arial, sans-serif;
     font-weight: bold;
     border-radius: 1rem;
   }
 
   .upside .Inicio:hover{
-    background: #2b1515;
+    background: #004576;
   }
 
   /* DETAIL */
@@ -93,7 +93,7 @@
     text-decoration: none;
     width: 10rem;
     box-shadow: 2px 3px 3px black;
-    font-family: "Georgia";
+    font-family: "Arial", Arial, sans-serif;
     font-weight: bold;
     border-radius: 1rem;
 }
@@ -111,7 +111,7 @@
     text-decoration: none;
     width: 8rem;
     box-shadow: 2px 3px 3px black;
-    font-family: "Georgia";
+    font-family: "Arial", Arial, sans-serif;
     font-weight: bold;
     border-radius: 1rem;
 }
@@ -131,7 +131,7 @@
     text-decoration: none;
     width: 8rem;
     box-shadow: 2px 3px 3px black;
-    font-family: "Georgia";
+    font-family: "Arial", Arial, sans-serif;
     font-weight: bold;
     border-radius: 1rem;
 }
@@ -151,7 +151,7 @@
     text-decoration: none;
     width: 10rem;
     box-shadow: 2px 3px 3px black;
-    font-family: "Georgia";
+    font-family: "Arial", Arial, sans-serif;
     font-weight: bold;
     border-radius: 1rem;
 }
@@ -178,7 +178,7 @@
     text-decoration: none;
     width: 2rem;
     box-shadow: 2px 3px 3px black;
-    font-family: "Georgia";
+    font-family: "Arial", Arial, sans-serif;
     font-weight: bold;
     border-radius: 1rem;
 }
@@ -198,7 +198,7 @@
     text-decoration: none;
     width: 5rem;
     box-shadow: 2px 3px 3px black;
-    font-family: "Georgia";
+    font-family: "Arial", Arial, sans-serif;
     font-weight: bold;
     border-radius: 1rem;
 }
@@ -218,7 +218,7 @@
     text-decoration: none;
     width: 5rem;
     box-shadow: 2px 3px 3px black;
-    font-family: "Georgia";
+    font-family: "Arial", Arial, sans-serif;
     font-weight: bold;
     border-radius: 1rem;
 }

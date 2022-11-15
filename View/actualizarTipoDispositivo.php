@@ -4,7 +4,7 @@
 </div>
 <div class="card" id="ListaCompleta">
     <div class="card-title">
-        <h2> ACTUALIZAR TIPO DE Dispositivo </h2>
+        <h2> ACTUALIZAR TIPO DE DISPOSITIVO </h2>
     </div>
     <form method="POST" action="?c=actualizarTipoDispositivo" class='formulario'>        
         <?php foreach ($selectTipoDispositivo as $value) { ?>

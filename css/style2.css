@@ -28,12 +28,12 @@
 }
 
 #submit-button{
-    background: black;
-    border-color: black;
+    background: #e35768;
+    border-color: #e35768;
     border-radius: 1rem;
 }
 
 #submit-button:hover{
-    background:lightslategray ;
-    border-color: lightslategray;
+    background:#a53e4a ;
+    border-color: #a53e4a;
 }

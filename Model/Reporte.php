@@ -109,9 +109,9 @@ class Reporte {
                 return $rows; 
                 break;
             case 3:
-                $query = "SELECT devolucion.idPrestamo, tecnico.idTecnico, tecnico.primerNombre, tecnico.segundoNombre, tecnico.primerApellido, tecnico.segundoApellido, tecnico.telefono, tecnico.correoElectronico 
-                    FROM tecnico 
-                    INNER JOIN prestamo ON tecnico.idTecnico = prestamo.idTecnico 
+                $query = "SELECT devolucion.idPrestamo, ingeniero.idTecnico, ingeniero.primerNombre, ingeniero.segundoNombre, ingeniero.primerApellido, ingeniero.segundoApellido, ingeniero.telefono, ingeniero.correoElectronico 
+                    FROM ingeniero 
+                    INNER JOIN prestamo ON ingeniero.idTecnico = prestamo.idTecnico 
                     INNER JOIN devolucion ON prestamo.idPrestamo = devolucion.idPrestamo
                     WHERE devolucion.idEstadoDevolucionGeneral = 2";
                 $pdo = new Connection();
@@ -126,9 +126,9 @@ class Reporte {
                 return $rows; 
                 break;
             case 4:
-                $query = "SELECT devolucion.idPrestamo, tecnico.idTecnico, tecnico.primerNombre, tecnico.segundoNombre, tecnico.primerApellido, tecnico.segundoApellido, tecnico.telefono, tecnico.correoElectronico 
-                    FROM tecnico 
-                    INNER JOIN prestamo ON tecnico.idTecnico = prestamo.idTecnico 
+                $query = "SELECT devolucion.idPrestamo, ingeniero.idTecnico, ingeniero.primerNombre, ingeniero.segundoNombre, ingeniero.primerApellido, ingeniero.segundoApellido, ingeniero.telefono, ingeniero.correoElectronico 
+                    FROM ingeniero 
+                    INNER JOIN prestamo ON ingeniero.idTecnico = prestamo.idTecnico 
                     INNER JOIN devolucion ON prestamo.idPrestamo = devolucion.idPrestamo
                     WHERE devolucion.idEstadoDevolucionGeneral = 2";
                 $pdo = new Connection();

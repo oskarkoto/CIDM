@@ -9,14 +9,13 @@
 </div>
 <div class="card" id="ListaCompleta">
     <div class="card-title">
-        <h2>PRESTAMOS DE Dispositivo</h2>
+        <h2>PRESTAMOS DE DISPOSITIVO</h2>
     </div>
     <div class="card-subtitle" id="Add">
         <label for="search">Filtrar búsqueda por: </label>
         <select name="forma" onchange="location = this.value;">
             <option value="?c=detalleAllPrestamo" >Préstamo</option>
             <option value="?c=detalleAllPrestamoDispositivo" selected>Préstamo de Dispositivo</option>
-            <option value="?c=detalleAllPrestamoSuministro">Préstamo de Suministro</option>
         </select>
         <!-- Icono filtro -->
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">

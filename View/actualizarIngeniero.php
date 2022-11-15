@@ -1,4 +1,4 @@
-<!-- Vista actualizar tecnicos -->
+<!-- Vista actualizar ingenieros -->
 <div class="upside">
     <a href="?c=detalleAllIngeniero" class="Inicio">« Regresar </a>
 </div>
