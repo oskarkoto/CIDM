@@ -26,8 +26,8 @@
           Administración
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="?c=detalleAllIngeniero">Administrar Ingenieros</a>
-          <a class="dropdown-item" href="?c=detalleAllDispositivo">Administrar Inventario</a>
+          <a class="dropdown-item" href="?c=detalleAllDispositivo">Dispositivos Móviles</a>
+          <a class="dropdown-item" href="?c=detalleAllIngeniero">Ingenieros</a>
         </div>
       </li>
     </ul>
