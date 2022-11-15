@@ -27,7 +27,7 @@
         ?>
             <tr>
                 <td ><?php echo $value->idPrestamo; ?></td>
-                <td><?php echo $value->idTecnico; ?></td>
+                <td><?php echo $value->idIngeniero; ?></td>
                 <td><?php echo $value->fechaPrestamo; ?></td>
                 <td><?php echo $value->fechaEsperadaDevolucion; ?></td>
                 <td><?php echo $value->cliente; ?></td>

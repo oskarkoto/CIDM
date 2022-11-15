@@ -16,10 +16,10 @@
             </div>                
             <div class="dropdown-divider" id="dropdown-divider-form"></div>
             <div class="col-md-12 col-xl-12 col-sm-12" >
-                <label for="idTecnico" class='label_form'>Técnico responsable:  </label>
-                <select class="col-sm-2 col-form-label" name="idTecnico" id="input_form" required>
-                <?php foreach ($allTecnico as $value) { ?>
-                    <option value="<?php echo $value->idTecnico; ?>"><?php echo $value->primerNombre; ?> <?php echo $value->primerApellido; ?></option>
+                <label for="idIngeniero" class='label_form'>Técnico responsable:  </label>
+                <select class="col-sm-2 col-form-label" name="idIngeniero" id="input_form" required>
+                <?php foreach ($allIngeniero as $value) { ?>
+                    <option value="<?php echo $value->idIngeniero; ?>"><?php echo $value->primerNombre; ?> <?php echo $value->primerApellido; ?></option>
                 <?php } ?>
                 </select>
             </div>

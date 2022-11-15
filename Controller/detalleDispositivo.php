@@ -1,4 +1,4 @@
-<!--Controlador para detallar un Tecnico.-->
+<!--Controlador para detallar un Ingeniero.-->
 <?php
 include 'model/Dispositivo.php';
 

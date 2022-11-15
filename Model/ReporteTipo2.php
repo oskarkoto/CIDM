@@ -4,15 +4,15 @@
 class ReporteTipo2 {
     
     public $idPrestamo;
-    public $idTecnico;
+    public $idIngeniero;
     public $fechaPrestamo;
     public $fechaEsperadaDevolucion;
     public $cliente;
 
-    public function __construct( $idPrestamo = 0,$idTecnico = "",$fechaPrestamo= "", 
+    public function __construct( $idPrestamo = 0,$idIngeniero = "",$fechaPrestamo= "", 
     $fechaEsperadaDevolucion = "", $cliente = "") {
         $this->idPrestamo = $idPrestamo;
-        $this->idTecnico = $idTecnico;
+        $this->idIngeniero = $idIngeniero;
         $this->fechaPrestamo = $fechaPrestamo;
         $this->fechaEsperadaDevolucion = $fechaEsperadaDevolucion;
         $this->cliente = $cliente;

@@ -45,7 +45,7 @@
         ?>
             <tr>
                 <td><?php echo $value->idPrestamo; ?></td>
-                <?php foreach ($allTecnico as $ingeniero) { if ($ingeniero->idTecnico == $value->idTecnico){ ?>
+                <?php foreach ($allIngeniero as $ingeniero) { if ($ingeniero->idIngeniero == $value->idIngeniero){ ?>
                 <td><?php echo $ingeniero->primerNombre; ?> <?php echo $ingeniero->primerApellido; ?></td>
                 <?php } } ?>
                 <td><?php echo $value->fechaPrestamo; ?></td>

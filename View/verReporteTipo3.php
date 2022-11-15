@@ -30,7 +30,7 @@
         ?>
             <tr>
                 <td ><?php echo $value->idPrestamo; ?></td>
-                <td><?php echo $value->idTecnico; ?></td>
+                <td><?php echo $value->idIngeniero; ?></td>
                 <td><?php echo $value->primerNombre; ?></td>
                 <td><?php echo $value->segundoNombre; ?></td>
                 <td><?php echo $value->primerApellido; ?></td>

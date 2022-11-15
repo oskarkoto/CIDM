@@ -6,16 +6,16 @@ include_once "model/Ingeniero.php";
 class Prestamo {
     
     public $idPrestamo;
-    public $idTecnico;
+    public $idIngeniero;
     public $fechaPrestamo;
     public $fechaEsperadaDevolucion;
     public $cliente;
 
 
-    public function __construct($idPrestamo = 0, $idTecnico = "",$fechaPrestamo = "",$fechaEsperadaDevolucion="",
+    public function __construct($idPrestamo = 0, $idIngeniero = "",$fechaPrestamo = "",$fechaEsperadaDevolucion="",
     $cliente = "") {
         $this->idPrestamo = $idPrestamo;
-        $this->idTecnico = $idTecnico;
+        $this->idIngeniero = $idIngeniero;
         $this->fechaPrestamo = $fechaPrestamo;
         $this->fechaEsperadaDevolucion = $fechaEsperadaDevolucion;
         $this->cliente = $cliente;        
@@ -27,7 +27,7 @@ class Prestamo {
     function insertPrestamo() {
         $pdo = new Connection();
         $pdo = $pdo->open();
-        $query = "INSERT INTO prestamo (idPrestamo, idTecnico,fechaPrestamo,fechaEsperadaDevolucion,cliente) VALUES ('{$this->idPrestamo}','{$this->idTecnico}','{$this->fechaPrestamo}','{$this->fechaEsperadaDevolucion}','{$this->cliente}')";
+        $query = "INSERT INTO prestamo (idPrestamo, idIngeniero,fechaPrestamo,fechaEsperadaDevolucion,cliente) VALUES ('{$this->idPrestamo}','{$this->idIngeniero}','{$this->fechaPrestamo}','{$this->fechaEsperadaDevolucion}','{$this->cliente}')";
         $result = $pdo->prepare($query);
         return $result->execute();
     }
@@ -43,7 +43,7 @@ class Prestamo {
         $result = $pdo->query($query);
         $rows = [];
         foreach ($result->fetchAll() as $row) {
-            $rows[] = new Prestamo($row['idPrestamo'], $row['idTecnico'],$row['fechaPrestamo'],$row['fechaEsperadaDevolucion'],$row['cliente']);
+            $rows[] = new Prestamo($row['idPrestamo'], $row['idIngeniero'],$row['fechaPrestamo'],$row['fechaEsperadaDevolucion'],$row['cliente']);
         }
         return $rows;
     }      
@@ -63,7 +63,7 @@ class Prestamo {
         $result = $pdo->query($query);
         $rows = [];
         foreach ($result->fetchAll() as $row) {
-            $rows[] = new Prestamo($row['idPrestamo'], $row['idTecnico'],$row['fechaPrestamo'],
+            $rows[] = new Prestamo($row['idPrestamo'], $row['idIngeniero'],$row['fechaPrestamo'],
             $row['fechaEsperadaDevolucion'],$row['cliente']);
         }
         return $rows; 

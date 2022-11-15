@@ -19,7 +19,7 @@
                 <div class="dropdown-divider"></div>
         <p class="card-subtitle mb-2" id="card-subtitle">
         <strong>Técnico: </strong>
-        <?php foreach ($allTecnico as $ingeniero) { if ($ingeniero->idTecnico == $value->idTecnico){ ?>
+        <?php foreach ($allIngeniero as $ingeniero) { if ($ingeniero->idIngeniero == $value->idIngeniero){ ?>
              <?php echo $ingeniero->primerNombre; ?> <?php echo $ingeniero->primerApellido; ?></p>
         <?php } } ?>
                 <div class="dropdown-divider"></div>

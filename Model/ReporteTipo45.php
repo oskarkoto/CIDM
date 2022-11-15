@@ -4,7 +4,7 @@
 class ReporteTipo45 {
     
     public $idPrestamo;
-    public $idTecnico;
+    public $idIngeniero;
     public $primerNombre;
     public $segundoNombre;
     public $primerApellido;
@@ -12,11 +12,11 @@ class ReporteTipo45 {
     public $telefono;
     public $correoElectronico;
 
-    public function __construct( $idPrestamo = 0,$idTecnico = "",$primerNombre= "", 
+    public function __construct( $idPrestamo = 0,$idIngeniero = "",$primerNombre= "", 
     $segundoNombre = "", $primerApellido = "", $segundoApellido = "", $telefono = "", 
     $correoElectronico = "") {
         $this->idPrestamo = $idPrestamo;
-        $this->idTecnico = $idTecnico;
+        $this->idIngeniero = $idIngeniero;
         $this->primerNombre = $primerNombre;
         $this->segundoNombre = $segundoNombre;
         $this->primerApellido = $primerApellido;

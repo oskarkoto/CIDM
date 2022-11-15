@@ -1,4 +1,4 @@
-<!--Modelo de Tecnicos.-->
+<!--Modelo de Ingenieros.-->
 <?php
 include_once "Model/Connection.php";
 
