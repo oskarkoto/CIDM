@@ -4,7 +4,7 @@ include 'model/Prestamo.php';
 
     $Prestamo = new Prestamo();
     $allPrestamo = $Prestamo->seleccionarAllPrestamo();
-    $Tecnico = new Tecnico();
-    $allTecnico = $Tecnico->seleccionarAllTecnico();
+    $Ingeniero = new Ingeniero();
+    $allIngeniero = $Ingeniero->seleccionarAllIngeniero();
     $msg = NULL;
     include 'view/VerAllPrestamo.php';

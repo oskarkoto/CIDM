@@ -3,22 +3,22 @@
         <h6 id = "alerta"><?php echo $msg; ?> </h6>
     </div>
 <?php } ?>    
-<!-- Vista de Reporte Tipo 2 -->
+<!-- Vista de Reporte Tipo 3 -->
 <div class="upside">
     <a href="index.php" class="Inicio">« Inicio</a>
 </div>
 <div class="card" id="ListaCompleta">
     <div class="card-title">
-        <h2> SUMINISTROS DAÑADOS </h2>
+        <h2> PRESTAMOS ATRASADOS </h2>
     </div>
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Tipo de Suministro</th>
-                <th scope="col">Condición Actual</th>
-                <th scope="col">Estado en Inventario</th>
-                <th scope="col">Fecha de Inclusión</th>
+                <th scope="col">ID del Préstamo</th>
+                <th scope="col">ID del Técnico</th>
+                <th scope="col">Fecha del Préstamo</th>
+                <th scope="col">Fecha Esperada de Devolución</th>
+                <th scope="col">Cliente</th>
             </tr>
         </thead>
         <tbody>
@@ -26,11 +26,11 @@
         foreach ($resultsReporte as $value) {    
         ?>
             <tr>
-                <td ><?php echo $value->idSuministro; ?></td>
-                <td><?php echo $value->nombreTipoSuministro; ?></td>
-                <td><?php echo $value->descripcionCondicionActual; ?></td>
-                <td><?php echo $value->descripcionEstadoInventario; ?></td>
-                <td><?php echo $value->fechaInclusion; ?></td>
+                <td ><?php echo $value->idPrestamo; ?></td>
+                <td><?php echo $value->idTecnico; ?></td>
+                <td><?php echo $value->fechaPrestamo; ?></td>
+                <td><?php echo $value->fechaEsperadaDevolucion; ?></td>
+                <td><?php echo $value->cliente; ?></td>
                 
             </tr>
         <?php } ?>

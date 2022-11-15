@@ -1,7 +1,7 @@
 <!--Modelo de reporte de tipo 6.-->
 <?php
 
-class ReporteTipo6 {
+class ReporteTipo5 {
     
     public $idTipoDispositivo;
     public $nombreTipoDispositivo;

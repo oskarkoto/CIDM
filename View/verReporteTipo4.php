@@ -3,13 +3,13 @@
         <h6 id = "alerta"><?php echo $msg; ?> </h6>
     </div>
 <?php } ?>    
-<!-- Vista de Reporte Tipo 4 -->
+<!-- Vista de Reporte Tipo 5 -->
 <div class="upside">
     <a href="index.php" class="Inicio">« Inicio</a>
 </div>
 <div class="card" id="ListaCompleta">
     <div class="card-title">
-        <h2> INFORME DE TECNICO - PRESTAMOS - DAÑOS </h2>
+        <h2> INFORME DE TECNICO - PRESTAMOS - PERDIDAS </h2>
     </div>
     <table class="table">
         <thead>

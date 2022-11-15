@@ -4,9 +4,9 @@ include_once "model/Connection.php";
 include_once "model/TipoReporte.php";
 include_once "model/ReporteTipo1.php";
 include_once "model/ReporteTipo2.php";
-include_once "model/ReporteTipo3.php";
-include_once "model/ReporteTipo45.php";
-include_once "model/ReporteTipo6.php";
+include_once "model/ReporteTipo34.php";
+include_once "model/ReporteTipo5.php";
+
 
 class Reporte {
     
@@ -94,23 +94,6 @@ class Reporte {
                 return $rows; 
                 break;
             case 2:
-                $query = "SELECT s.idSuministro, t.nombreTipoSuministro, c.descripcionCondicionActual, i.descripcionEstadoInventario, s.fechaInclusion
-                    FROM suministro s
-                    INNER JOIN tiposuministro t ON s.idTipoSuministro = t.idTipoSuministro
-                    INNER JOIN condicionactual c ON s.idCondicionActual = c.idCondicionActual
-                    INNER JOIN estadoinventario i ON s.idEstadoInventario = i.idEstadoInventario
-                    WHERE s.idcondicionactual=2";
-                $pdo = new Connection();
-                $pdo = $pdo->open();
-                $result = $pdo->query($query);
-                $rows = [];
-                foreach ($result->fetchAll() as $row) {
-                    $rows[] = new ReporteTipo2($row['idSuministro'],$row['nombreTipoSuministro'],$row['descripcionCondicionActual'],
-                    $row['descripcionEstadoInventario'],$row['fechaInclusion'],);
-                }
-                return $rows; 
-                break;
-            case 3:
                 $query = "SELECT prestamo.idPrestamo, idTecnico, fechaPrestamo, fechaEsperadaDevolucion, cliente 
                     FROM prestamo 
                     INNER JOIN devolucion ON prestamo.idPrestamo=devolucion.idPrestamo 
@@ -120,8 +103,25 @@ class Reporte {
                 $result = $pdo->query($query);
                 $rows = [];
                 foreach ($result->fetchAll() as $row) {
-                    $rows[] = new ReporteTipo3($row['idPrestamo'],$row['idTecnico'],$row['fechaPrestamo'],
+                    $rows[] = new ReporteTipo2($row['idPrestamo'],$row['idTecnico'],$row['fechaPrestamo'],
                     $row['fechaEsperadaDevolucion'],$row['cliente'],);
+                }
+                return $rows; 
+                break;
+            case 3:
+                $query = "SELECT devolucion.idPrestamo, tecnico.idTecnico, tecnico.primerNombre, tecnico.segundoNombre, tecnico.primerApellido, tecnico.segundoApellido, tecnico.telefono, tecnico.correoElectronico 
+                    FROM tecnico 
+                    INNER JOIN prestamo ON tecnico.idTecnico = prestamo.idTecnico 
+                    INNER JOIN devolucion ON prestamo.idPrestamo = devolucion.idPrestamo
+                    WHERE devolucion.idEstadoDevolucionGeneral = 2";
+                $pdo = new Connection();
+                $pdo = $pdo->open();
+                $result = $pdo->query($query);
+                $rows = [];
+                foreach ($result->fetchAll() as $row) {
+                    $rows[] = new ReporteTipo34($row['idPrestamo'],$row['idTecnico'],$row['primerNombre'],
+                    $row['segundoNombre'],$row['primerApellido'],$row['segundoApellido'],$row['telefono'],
+                    $row['correoElectronico']);
                 }
                 return $rows; 
                 break;
@@ -136,30 +136,13 @@ class Reporte {
                 $result = $pdo->query($query);
                 $rows = [];
                 foreach ($result->fetchAll() as $row) {
-                    $rows[] = new ReporteTipo45($row['idPrestamo'],$row['idTecnico'],$row['primerNombre'],
+                    $rows[] = new ReporteTipo34($row['idPrestamo'],$row['idTecnico'],$row['primerNombre'],
                     $row['segundoNombre'],$row['primerApellido'],$row['segundoApellido'],$row['telefono'],
                     $row['correoElectronico']);
                 }
                 return $rows; 
                 break;
             case 5:
-                $query = "SELECT devolucion.idPrestamo, tecnico.idTecnico, tecnico.primerNombre, tecnico.segundoNombre, tecnico.primerApellido, tecnico.segundoApellido, tecnico.telefono, tecnico.correoElectronico 
-                    FROM tecnico 
-                    INNER JOIN prestamo ON tecnico.idTecnico = prestamo.idTecnico 
-                    INNER JOIN devolucion ON prestamo.idPrestamo = devolucion.idPrestamo
-                    WHERE devolucion.idEstadoDevolucionGeneral = 4";
-                $pdo = new Connection();
-                $pdo = $pdo->open();
-                $result = $pdo->query($query);
-                $rows = [];
-                foreach ($result->fetchAll() as $row) {
-                    $rows[] = new ReporteTipo45($row['idPrestamo'],$row['idTecnico'],$row['primerNombre'],
-                    $row['segundoNombre'],$row['primerApellido'],$row['segundoApellido'],$row['telefono'],
-                    $row['correoElectronico']);
-                }
-                return $rows; 
-                break;
-            case 6:
                 $query = "SELECT t.idTipoDispositivo, t.nombreTipoDispositivo, t.descripcionTipoDispositivo, t.marcaTipoDispositivo, t.existenciaMinima, (SELECT COUNT(*) FROM Dispositivo e WHERE e.idTipoDispositivo = t.idTipoDispositivo) as existenciaActual
                     FROM tipoDispositivo t 
                     INNER JOIN Dispositivo e ON e.idTipoDispositivo = t.idTipoDispositivo 
@@ -169,7 +152,7 @@ class Reporte {
                 $result = $pdo->query($query);
                 $rows = [];
                 foreach ($result->fetchAll() as $row) {
-                    $rows[] = new ReporteTipo6($row['idTipoDispositivo'],$row['nombreTipoDispositivo'],$row['descripcionTipoDispositivo'],
+                    $rows[] = new ReporteTipo5($row['idTipoDispositivo'],$row['nombreTipoDispositivo'],$row['descripcionTipoDispositivo'],
                     $row['marcaTipoDispositivo'],$row['existenciaMinima'],$row['existenciaActual']);
                 }
                 return $rows; 

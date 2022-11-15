@@ -3,16 +3,16 @@
         <h6 id = "alerta"><?php echo $msg; ?> </h6>
     </div>
 <?php   }  ?>
-<!-- Vista de Detalle de Tecnico -->
+<!-- Vista de Detalle de Ingeniero -->
 <div class="upside">
     <a href="index.php" class="Inicio">« Inicio</a>
 </div>
 <div class="card" id="ListaCompleta">
     <div class="card-title">
-        <h2> DETALLES DE TECNICO </h2>
+        <h2> DETALLES DE INGENIERO </h2>
     </div>
     <?php
-        foreach ($selectTecnico as $value) {    ?>
+        foreach ($selectIngeniero as $value) {    ?>
     <div class="card-body">      
         <p class="card-subtitle mb-2" id="card-subtitle">
             <strong>Nombre completo: </strong> <?php echo $value->primerNombre; ?> <?php echo $value->segundoNombre; ?>
@@ -32,9 +32,9 @@
                 <div class="dropdown-divider"></div>
     </div>    
     <div class="card-dfooter">        
-        <a href="?c=eliminarTecnico&idTecnico=<?php echo $value->idTecnico; ?>" class="card-link">Eliminar</a>
-        <a href="?c=actualizarTecnico&idTecnico=<?php echo $value->idTecnico; ?>" class="card-link">Editar</a>
-        <a href="?c=detalleAllTecnico" class="card-link">Volver</a>
+        <a href="?c=eliminarIngeniero&idIngeniero=<?php echo $value->idIngeniero; ?>" class="card-link">Eliminar</a>
+        <a href="?c=actualizarIngeniero&idIngeniero=<?php echo $value->idIngeniero; ?>" class="card-link">Editar</a>
+        <a href="?c=detalleAllIngeniero" class="card-link">Volver</a>
     </div>
     <?php   }  ?>
 </div>

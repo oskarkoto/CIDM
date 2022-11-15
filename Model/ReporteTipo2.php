@@ -1,20 +1,20 @@
-<!--Modelo de reporte de tipo 2.-->
+<!--Modelo de reporte de tipo 3.-->
 <?php
 
 class ReporteTipo2 {
     
-    public $idSuministro;
-    public $nombreTipoSuministro;
-    public $descripcionCondicionActual;
-    public $descripcionEstadoInventario;
-    public $fechaInclusion;
+    public $idPrestamo;
+    public $idTecnico;
+    public $fechaPrestamo;
+    public $fechaEsperadaDevolucion;
+    public $cliente;
 
-    public function __construct( $idSuministro = "",$nombreTipoSuministro = "",$descripcionCondicionActual= "", 
-    $descripcionEstadoInventario = "", $fechaInclusion = "") {
-        $this->idSuministro = $idSuministro;
-        $this->nombreTipoSuministro = $nombreTipoSuministro;
-        $this->descripcionCondicionActual = $descripcionCondicionActual;
-        $this->descripcionEstadoInventario = $descripcionEstadoInventario;
-        $this->fechaInclusion = $fechaInclusion;
+    public function __construct( $idPrestamo = 0,$idTecnico = "",$fechaPrestamo= "", 
+    $fechaEsperadaDevolucion = "", $cliente = "") {
+        $this->idPrestamo = $idPrestamo;
+        $this->idTecnico = $idTecnico;
+        $this->fechaPrestamo = $fechaPrestamo;
+        $this->fechaEsperadaDevolucion = $fechaEsperadaDevolucion;
+        $this->cliente = $cliente;
     }
 }

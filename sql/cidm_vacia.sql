@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-08-2021 a las 23:30:16
+-- Tiempo de generación: 15-11-2022 a las 20:34:08
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -18,30 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `salvavidas`
+-- Base de datos: `cidm`
 --
-CREATE DATABASE IF NOT EXISTS `salvavidas` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `salvavidas`;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `categoriasuministro`
---
-
-CREATE TABLE `categoriasuministro` (
-  `idCategoria` int(11) NOT NULL,
-  `descripcionCategoria` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `categoriasuministro`
---
-
-INSERT INTO `categoriasuministro` (`idCategoria`, `descripcionCategoria`) VALUES
-(1, 'Accesorio'),
-(2, 'Consumible'),
-(3, 'Repuesto');
+CREATE DATABASE IF NOT EXISTS `cidm` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `cidm`;
 
 -- --------------------------------------------------------
 
@@ -65,6 +45,7 @@ INSERT INTO `condicionactual` (`idCondicionActual`, `descripcionCondicionActual`
 (4, 'Gasto de Uso'),
 (5, 'Perdido'),
 (6, 'Robado');
+
 -- --------------------------------------------------------
 
 --
@@ -78,16 +59,15 @@ CREATE TABLE `devolucion` (
   `idEstadoDevolucionGeneral` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `equipo`
+-- Estructura de tabla para la tabla `dispositivo`
 --
 
-CREATE TABLE `equipo` (
-  `idEquipo` varchar(25) NOT NULL,
-  `idTipoEquipo` varchar(25) NOT NULL,
+CREATE TABLE `dispositivo` (
+  `idDispositivo` varchar(25) NOT NULL,
+  `idTipoDispositivo` varchar(25) NOT NULL,
   `idCondicionActual` int(11) NOT NULL,
   `idEstadoInventario` int(11) NOT NULL,
   `fechaInclusion` date DEFAULT current_timestamp()
@@ -162,12 +142,30 @@ INSERT INTO `estadoinventario` (`idEstadoInventario`, `descripcionEstadoInventar
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `ingeniero`
+--
+
+CREATE TABLE `ingeniero` (
+  `idIngeniero` varchar(25) NOT NULL,
+  `primerNombre` varchar(50) NOT NULL,
+  `segundoNombre` varchar(50) DEFAULT NULL,
+  `primerApellido` varchar(50) NOT NULL,
+  `segundoApellido` varchar(50) DEFAULT NULL,
+  `telefono` varchar(25) DEFAULT NULL,
+  `correoElectronico` varchar(50) DEFAULT NULL,
+  `direccion` varchar(500) DEFAULT NULL,
+  `fechaInclusion` date DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `prestamo`
 --
 
 CREATE TABLE `prestamo` (
   `idPrestamo` int(11) NOT NULL,
-  `idTecnico` varchar(25) NOT NULL,
+  `idIngeniero` varchar(25) NOT NULL,
   `fechaPrestamo` date DEFAULT current_timestamp(),
   `fechaEsperadaDevolucion` date DEFAULT NULL,
   `cliente` varchar(50) DEFAULT NULL
@@ -176,40 +174,27 @@ CREATE TABLE `prestamo` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `prestamoequipo`
+-- Estructura de tabla para la tabla `prestamodispositivo`
 --
 
-CREATE TABLE `prestamoequipo` (
-  `idPrestamoEquipo` int(11) NOT NULL,
+CREATE TABLE `prestamodispositivo` (
+  `idPrestamoDispositivo` int(11) NOT NULL,
   `idPrestamo` int(11) NOT NULL,
-  `idEquipo` varchar(25) NOT NULL,
+  `idDispositivo` varchar(25) NOT NULL,
   `idEstadoDevolucion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Disparadores `prestamoequipo`
+-- Disparadores `prestamodispositivo`
 --
 DELIMITER $$
-CREATE TRIGGER `cambiarestadoequipo` AFTER INSERT ON `prestamoequipo` FOR EACH ROW UPDATE equipo SET idEstadoInventario = 2 WHERE idEquipo = NEW.idEquipo
+CREATE TRIGGER `cambiarestadodispositivo` AFTER INSERT ON `prestamodispositivo` FOR EACH ROW UPDATE dispositivo SET idEstadoInventario = 2 WHERE idDispositivo = NEW.idDispositivo
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `devolverestadoequipo` AFTER DELETE ON `prestamoequipo` FOR EACH ROW UPDATE equipo SET idEstadoInventario = 1 WHERE idEquipo = prestamoequipo.idEquipo
+CREATE TRIGGER `devolverestadodispositivo` AFTER DELETE ON `prestamodispositivo` FOR EACH ROW UPDATE dispositivo SET idEstadoInventario = 1 WHERE idDispositivo = prestamodispositivo.idDispositivo
 $$
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `prestamosuministro`
---
-
-CREATE TABLE `prestamosuministro` (
-  `idPrestamoSuministro` int(11) NOT NULL,
-  `idPrestamo` int(11) NOT NULL,
-  `idSuministro` varchar(25) NOT NULL,
-  `idEstadoDevolucion` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -227,46 +212,14 @@ CREATE TABLE `reporte` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `suministro`
+-- Estructura de tabla para la tabla `tipodispositivo`
 --
 
-CREATE TABLE `suministro` (
-  `idSuministro` varchar(25) NOT NULL,
-  `idTipoSuministro` varchar(25) NOT NULL,
-  `idCondicionActual` int(11) NOT NULL,
-  `idEstadoInventario` int(11) NOT NULL,
-  `fechaInclusion` date DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tecnico`
---
-
-CREATE TABLE `tecnico` (
-  `idTecnico` varchar(25) NOT NULL,
-  `primerNombre` varchar(50) NOT NULL,
-  `segundoNombre` varchar(50) DEFAULT NULL,
-  `primerApellido` varchar(50) NOT NULL,
-  `segundoApellido` varchar(50) DEFAULT NULL,
-  `telefono` varchar(25) DEFAULT NULL,
-  `correoElectronico` varchar(50) DEFAULT NULL,
-  `direccion` varchar(500) DEFAULT NULL,
-  `fechaInclusion` date DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipoequipo`
---
-
-CREATE TABLE `tipoequipo` (
-  `idTipoEquipo` varchar(25) NOT NULL,
-  `nombreTipoEquipo` varchar(50) NOT NULL,
-  `descripcionTipoEquipo` varchar(100) DEFAULT NULL,
-  `marcaTipoEquipo` varchar(50) DEFAULT NULL,
+CREATE TABLE `tipodispositivo` (
+  `idTipoDispositivo` varchar(25) NOT NULL,
+  `nombreTipoDispositivo` varchar(50) NOT NULL,
+  `descripcionTipoDispositivo` varchar(100) DEFAULT NULL,
+  `marcaTipoDispositivo` varchar(50) DEFAULT NULL,
   `existenciaMinima` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -288,50 +241,15 @@ CREATE TABLE `tiporeporte` (
 --
 
 INSERT INTO `tiporeporte` (`idTipoReporte`, `nombreTipoReporte`, `detalleTipoReporte`, `queryTipoReporte`) VALUES
-(1, 'Equipos Dañados', ' Detalla los equipos que se encuentran actualmente con un daño.', ''),
-(2, 'Suministros Dañados', 'Detalla los suministros que se encuentran actualmente con un daño.', ''),
-(3, 'Préstamos Atrasados', 'Detalla los préstamos que sobrepasan la fecha prevista de devolución.', ''),
-(4, 'Informe de Técnico-Préstamos-Daños', 'Detalla los técnicos que han efectuado devoluciones con daños en el equipo.\r\n', ''),
-(5, 'Informe de Técnico-Préstamos-Pérdidas', 'Detalla los técnicos que han efectuado devoluciones con pérdidas o robos en el equipo.', ''),
-(6, 'Equipos con Inventario Bajo', 'Detalla los tipos de equipo que tienen una cantidad de unidades en inventario menores a su cantidad mínima de existencias.', '');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tiposuministro`
---
-
-CREATE TABLE `tiposuministro` (
-  `idTipoSuministro` varchar(25) NOT NULL,
-  `nombreTipoSuministro` varchar(50) NOT NULL,
-  `descripcionTipoSuministro` varchar(100) DEFAULT NULL,
-  `idCategoria` int(11) NOT NULL,
-  `idUnidades` int(11) NOT NULL,
-  `marcaTipoSuministro` varchar(50) DEFAULT NULL,
-  `existenciaMinima` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `unidadessuministro`
---
-
-CREATE TABLE `unidadessuministro` (
-  `idUnidades` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(1, 'Dispositivos Dañados', ' Detalla los dispositivos que se encuentran actualmente con un daño.', ''),
+(2, 'Préstamos Atrasados', 'Detalla los préstamos que sobrepasan la fecha prevista de devolución.', ''),
+(3, 'Informe de Técnico-Préstamos-Daños', 'Detalla los técnicos que han efectuado devoluciones con daños en el dispositivo.\r\n', ''),
+(4, 'Informe de Técnico-Préstamos-Pérdidas', 'Detalla los técnicos que han efectuado devoluciones con pérdidas o robos en el dispositivo.', ''),
+(5, 'Dispositivos con Inventario Bajo', 'Detalla los tipos de dispositivo que tienen una cantidad de unidades en inventario menores a su cantidad mínima de existencias.', '');
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `categoriasuministro`
---
-ALTER TABLE `categoriasuministro`
-  ADD PRIMARY KEY (`idCategoria`),
-  ADD UNIQUE KEY `idCategoria` (`idCategoria`);
 
 --
 -- Indices de la tabla `condicionactual`
@@ -350,14 +268,14 @@ ALTER TABLE `devolucion`
   ADD KEY `idEstadoDevolucionGeneral` (`idEstadoDevolucionGeneral`);
 
 --
--- Indices de la tabla `equipo`
+-- Indices de la tabla `dispositivo`
 --
-ALTER TABLE `equipo`
-  ADD PRIMARY KEY (`idEquipo`),
-  ADD UNIQUE KEY `idEquipo` (`idEquipo`),
+ALTER TABLE `dispositivo`
+  ADD PRIMARY KEY (`idDispositivo`),
+  ADD UNIQUE KEY `idDispositivo` (`idDispositivo`),
   ADD KEY `idCondicionActual` (`idCondicionActual`),
   ADD KEY `idEstadoInventario` (`idEstadoInventario`),
-  ADD KEY `idTipoEquipo` (`idTipoEquipo`);
+  ADD KEY `idTipoDispositivo` (`idTipoDispositivo`);
 
 --
 -- Indices de la tabla `estadodevolucion`
@@ -381,32 +299,29 @@ ALTER TABLE `estadoinventario`
   ADD UNIQUE KEY `idEstadoInventario` (`idEstadoInventario`);
 
 --
+-- Indices de la tabla `ingeniero`
+--
+ALTER TABLE `ingeniero`
+  ADD PRIMARY KEY (`idIngeniero`),
+  ADD UNIQUE KEY `idIngeniero` (`idIngeniero`);
+
+--
 -- Indices de la tabla `prestamo`
 --
 ALTER TABLE `prestamo`
   ADD PRIMARY KEY (`idPrestamo`),
   ADD UNIQUE KEY `idPrestamo` (`idPrestamo`),
-  ADD KEY `idTecnico` (`idTecnico`);
+  ADD KEY `idIngeniero` (`idIngeniero`);
 
 --
--- Indices de la tabla `prestamoequipo`
+-- Indices de la tabla `prestamodispositivo`
 --
-ALTER TABLE `prestamoequipo`
-  ADD PRIMARY KEY (`idPrestamoEquipo`),
-  ADD UNIQUE KEY `idPrestamoEquipo` (`idPrestamoEquipo`),
+ALTER TABLE `prestamodispositivo`
+  ADD PRIMARY KEY (`idPrestamoDispositivo`),
+  ADD UNIQUE KEY `idPrestamoDispositivo` (`idPrestamoDispositivo`),
   ADD KEY `idPrestamo` (`idPrestamo`),
   ADD KEY `idEstadoDevolucion` (`idEstadoDevolucion`),
-  ADD KEY `idEquipo` (`idEquipo`);
-
---
--- Indices de la tabla `prestamosuministro`
---
-ALTER TABLE `prestamosuministro`
-  ADD PRIMARY KEY (`idPrestamoSuministro`),
-  ADD UNIQUE KEY `idPrestamoSuministro` (`idPrestamoSuministro`),
-  ADD KEY `idPrestamo` (`idPrestamo`),
-  ADD KEY `idEstadoDevolucion` (`idEstadoDevolucion`),
-  ADD KEY `idSuministro` (`idSuministro`);
+  ADD KEY `idDispositivo` (`idDispositivo`);
 
 --
 -- Indices de la tabla `reporte`
@@ -417,28 +332,11 @@ ALTER TABLE `reporte`
   ADD KEY `idTipoReporte` (`idTipoReporte`);
 
 --
--- Indices de la tabla `suministro`
+-- Indices de la tabla `tipodispositivo`
 --
-ALTER TABLE `suministro`
-  ADD PRIMARY KEY (`idSuministro`),
-  ADD UNIQUE KEY `idSuministro` (`idSuministro`),
-  ADD KEY `idCondicionActual` (`idCondicionActual`),
-  ADD KEY `idEstadoInventario` (`idEstadoInventario`),
-  ADD KEY `idTipoSuministro` (`idTipoSuministro`);
-
---
--- Indices de la tabla `tecnico`
---
-ALTER TABLE `tecnico`
-  ADD PRIMARY KEY (`idTecnico`),
-  ADD UNIQUE KEY `idTecnico` (`idTecnico`);
-
---
--- Indices de la tabla `tipoequipo`
---
-ALTER TABLE `tipoequipo`
-  ADD PRIMARY KEY (`idTipoEquipo`),
-  ADD UNIQUE KEY `idTipoEquipo` (`idTipoEquipo`);
+ALTER TABLE `tipodispositivo`
+  ADD PRIMARY KEY (`idTipoDispositivo`),
+  ADD UNIQUE KEY `idTipoDispositivo` (`idTipoDispositivo`);
 
 --
 -- Indices de la tabla `tiporeporte`
@@ -448,36 +346,14 @@ ALTER TABLE `tiporeporte`
   ADD UNIQUE KEY `idTipoReporte` (`idTipoReporte`);
 
 --
--- Indices de la tabla `tiposuministro`
---
-ALTER TABLE `tiposuministro`
-  ADD PRIMARY KEY (`idTipoSuministro`),
-  ADD UNIQUE KEY `idTipoSuministro` (`idTipoSuministro`),
-  ADD KEY `idCategoria` (`idCategoria`),
-  ADD KEY `idUnidades` (`idUnidades`);
-
---
--- Indices de la tabla `unidadessuministro`
---
-ALTER TABLE `unidadessuministro`
-  ADD PRIMARY KEY (`idUnidades`),
-  ADD UNIQUE KEY `idUnidades` (`idUnidades`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
-
---
--- AUTO_INCREMENT de la tabla `categoriasuministro`
---
-ALTER TABLE `categoriasuministro`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `condicionactual`
 --
 ALTER TABLE `condicionactual`
-  MODIFY `idCondicionActual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idCondicionActual` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `devolucion`
@@ -489,19 +365,19 @@ ALTER TABLE `devolucion`
 -- AUTO_INCREMENT de la tabla `estadodevolucion`
 --
 ALTER TABLE `estadodevolucion`
-  MODIFY `idEstadoDevolucion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idEstadoDevolucion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `estadodevoluciongeneral`
 --
 ALTER TABLE `estadodevoluciongeneral`
-  MODIFY `idEstadoDevolucionGeneral` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idEstadoDevolucionGeneral` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `estadoinventario`
 --
 ALTER TABLE `estadoinventario`
-  MODIFY `idEstadoInventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idEstadoInventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamo`
@@ -510,16 +386,10 @@ ALTER TABLE `prestamo`
   MODIFY `idPrestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT de la tabla `prestamoequipo`
+-- AUTO_INCREMENT de la tabla `prestamodispositivo`
 --
-ALTER TABLE `prestamoequipo`
-  MODIFY `idPrestamoEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de la tabla `prestamosuministro`
---
-ALTER TABLE `prestamosuministro`
-  MODIFY `idPrestamoSuministro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+ALTER TABLE `prestamodispositivo`
+  MODIFY `idPrestamoDispositivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `reporte`
@@ -534,12 +404,6 @@ ALTER TABLE `tiporeporte`
   MODIFY `idTipoReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `unidadessuministro`
---
-ALTER TABLE `unidadessuministro`
-  MODIFY `idUnidades` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
 -- Restricciones para tablas volcadas
 --
 
@@ -551,55 +415,32 @@ ALTER TABLE `devolucion`
   ADD CONSTRAINT `devolucion_ibfk_2` FOREIGN KEY (`idEstadoDevolucionGeneral`) REFERENCES `estadodevoluciongeneral` (`idEstadoDevolucionGeneral`);
 
 --
--- Filtros para la tabla `equipo`
+-- Filtros para la tabla `dispositivo`
 --
-ALTER TABLE `equipo`
-  ADD CONSTRAINT `equipo_ibfk_1` FOREIGN KEY (`idCondicionActual`) REFERENCES `condicionactual` (`idCondicionActual`),
-  ADD CONSTRAINT `equipo_ibfk_2` FOREIGN KEY (`idEstadoInventario`) REFERENCES `estadoinventario` (`idEstadoInventario`),
-  ADD CONSTRAINT `equipo_ibfk_3` FOREIGN KEY (`idTipoEquipo`) REFERENCES `tipoequipo` (`idTipoEquipo`);
+ALTER TABLE `dispositivo`
+  ADD CONSTRAINT `dispositivo_ibfk_1` FOREIGN KEY (`idCondicionActual`) REFERENCES `condicionactual` (`idCondicionActual`),
+  ADD CONSTRAINT `dispositivo_ibfk_2` FOREIGN KEY (`idEstadoInventario`) REFERENCES `estadoinventario` (`idEstadoInventario`),
+  ADD CONSTRAINT `dispositivo_ibfk_3` FOREIGN KEY (`idTipoDispositivo`) REFERENCES `tipodispositivo` (`idTipoDispositivo`);
 
 --
 -- Filtros para la tabla `prestamo`
 --
 ALTER TABLE `prestamo`
-  ADD CONSTRAINT `prestamo_ibfk_1` FOREIGN KEY (`idTecnico`) REFERENCES `tecnico` (`idTecnico`);
+  ADD CONSTRAINT `prestamo_ibfk_1` FOREIGN KEY (`idIngeniero`) REFERENCES `ingeniero` (`idIngeniero`);
 
 --
--- Filtros para la tabla `prestamoequipo`
+-- Filtros para la tabla `prestamodispositivo`
 --
-ALTER TABLE `prestamoequipo`
-  ADD CONSTRAINT `prestamoequipo_ibfk_1` FOREIGN KEY (`idPrestamo`) REFERENCES `prestamo` (`idPrestamo`),
-  ADD CONSTRAINT `prestamoequipo_ibfk_2` FOREIGN KEY (`idEstadoDevolucion`) REFERENCES `estadodevolucion` (`idEstadoDevolucion`),
-  ADD CONSTRAINT `prestamoequipo_ibfk_3` FOREIGN KEY (`idEquipo`) REFERENCES `equipo` (`idEquipo`);
-
---
--- Filtros para la tabla `prestamosuministro`
---
-ALTER TABLE `prestamosuministro`
-  ADD CONSTRAINT `prestamosuministro_ibfk_1` FOREIGN KEY (`idPrestamo`) REFERENCES `prestamo` (`idPrestamo`),
-  ADD CONSTRAINT `prestamosuministro_ibfk_2` FOREIGN KEY (`idEstadoDevolucion`) REFERENCES `estadodevolucion` (`idEstadoDevolucion`),
-  ADD CONSTRAINT `prestamosuministro_ibfk_3` FOREIGN KEY (`idSuministro`) REFERENCES `suministro` (`idSuministro`);
+ALTER TABLE `prestamodispositivo`
+  ADD CONSTRAINT `prestamodispositivo_ibfk_1` FOREIGN KEY (`idPrestamo`) REFERENCES `prestamo` (`idPrestamo`),
+  ADD CONSTRAINT `prestamodispositivo_ibfk_2` FOREIGN KEY (`idEstadoDevolucion`) REFERENCES `estadodevolucion` (`idEstadoDevolucion`),
+  ADD CONSTRAINT `prestamodispositivo_ibfk_3` FOREIGN KEY (`idDispositivo`) REFERENCES `dispositivo` (`idDispositivo`);
 
 --
 -- Filtros para la tabla `reporte`
 --
 ALTER TABLE `reporte`
   ADD CONSTRAINT `reporte_ibfk_1` FOREIGN KEY (`idTipoReporte`) REFERENCES `tiporeporte` (`idTipoReporte`);
-
---
--- Filtros para la tabla `suministro`
---
-ALTER TABLE `suministro`
-  ADD CONSTRAINT `suministro_ibfk_1` FOREIGN KEY (`idCondicionActual`) REFERENCES `condicionactual` (`idCondicionActual`),
-  ADD CONSTRAINT `suministro_ibfk_2` FOREIGN KEY (`idEstadoInventario`) REFERENCES `estadoinventario` (`idEstadoInventario`),
-  ADD CONSTRAINT `suministro_ibfk_3` FOREIGN KEY (`idTipoSuministro`) REFERENCES `tiposuministro` (`idTipoSuministro`);
-
---
--- Filtros para la tabla `tiposuministro`
---
-ALTER TABLE `tiposuministro`
-  ADD CONSTRAINT `tiposuministro_ibfk_1` FOREIGN KEY (`idCategoria`) REFERENCES `categoriasuministro` (`idCategoria`),
-  ADD CONSTRAINT `tiposuministro_ibfk_2` FOREIGN KEY (`idUnidades`) REFERENCES `unidadessuministro` (`idUnidades`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

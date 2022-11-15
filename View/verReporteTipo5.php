@@ -3,25 +3,23 @@
         <h6 id = "alerta"><?php echo $msg; ?> </h6>
     </div>
 <?php } ?>    
-<!-- Vista de Reporte Tipo 5 -->
+<!-- Vista de Reporte Tipo 6 -->
 <div class="upside">
     <a href="index.php" class="Inicio">« Inicio</a>
 </div>
 <div class="card" id="ListaCompleta">
     <div class="card-title">
-        <h2> INFORME DE TECNICO - PRESTAMOS - PERDIDAS </h2>
+        <h2> DispositivoS CON INVENTARIO BAJO </h2>
     </div>
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">ID del Préstamo</th>
-                <th scope="col">ID del Técnico</th>
-                <th scope="col">Primer Nombre</th>
-                <th scope="col">Segundo Nombre</th>
-                <th scope="col">Primer Apellido</th>
-                <th scope="col">Segundo Apellido</th>
-                <th scope="col">Teléfono</th>
-                <th scope="col">Correo</th>
+                <th scope="col">ID del Tipo de Dispositivo</th>
+                <th scope="col">Tipo de Dispositivo</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Existencia Mínima</th>
+                <th scope="col">Existencia Actual</th>
             </tr>
         </thead>
         <tbody>
@@ -29,14 +27,12 @@
         foreach ($resultsReporte as $value) {    
         ?>
             <tr>
-                <td ><?php echo $value->idPrestamo; ?></td>
-                <td><?php echo $value->idTecnico; ?></td>
-                <td><?php echo $value->primerNombre; ?></td>
-                <td><?php echo $value->segundoNombre; ?></td>
-                <td><?php echo $value->primerApellido; ?></td>
-                <td><?php echo $value->segundoApellido; ?></td>
-                <td><?php echo $value->telefono; ?></td>
-                <td><?php echo $value->correoElectronico; ?></td>
+                <td ><?php echo $value->idTipoDispositivo; ?></td>
+                <td><?php echo $value->nombreTipoDispositivo; ?></td>
+                <td><?php echo $value->descripcionTipoDispositivo; ?></td>
+                <td><?php echo $value->marcaTipoDispositivo; ?></td>
+                <td><?php echo $value->existenciaMinima; ?></td>
+                <td><?php echo $value->existenciaActual; ?></td>
             </tr>
         <?php } ?>
         </tbody>

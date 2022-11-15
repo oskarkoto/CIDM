@@ -10,7 +10,7 @@
             <a href="?c=detalleAllDispositivo" class="card-link">Administrar Inventario</a>        
         </div>       
         <div class="container" id="OpcionesMP">
-            <a href="?c=detalleAllTecnico" class="card-link">Administrar Técnicos</a>
+            <a href="?c=detalleAllIngeniero" class="card-link">Administrar Técnicos</a>
          </div>
         <div class="container" id="OpcionesMP">           
             <a href="?c=detalleAllDevolucion" class="card-link">Devoluciones</a>

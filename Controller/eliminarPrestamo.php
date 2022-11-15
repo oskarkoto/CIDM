@@ -7,13 +7,13 @@ $Prestamo = new Prestamo();
 if ($Prestamo->eliminarPrestamo($idPrestamo)){
   $msg = "EXITO al borrar el Préstamo.";
   $allPrestamo = $Prestamo->seleccionarAllPrestamo();
-  $Tecnico = new Tecnico();
-  $allTecnico = $Tecnico->seleccionarAllTecnico();
+  $Ingeniero = new Ingeniero();
+  $allIngeniero = $Ingeniero->seleccionarAllIngeniero();
     include 'view/verAllPrestamo.php';
 } else {
    $msg = "ERROR al borrar el Préstamo.";
    $allPrestamo = $Prestamo->seleccionarAllPrestamo();
-   $Tecnico = new Tecnico();
-   $allTecnico = $Tecnico->seleccionarAllTecnico();
+   $Ingeniero = new Ingeniero();
+   $allIngeniero = $Ingeniero->seleccionarAllIngeniero();
     include 'view/verAllPrestamo.php';
 }    

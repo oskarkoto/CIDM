@@ -7,7 +7,7 @@ $sPrestamo = new Prestamo();
 
     $selectPrestamo = $sPrestamo->seleccionarPrestamo($prestamoId);
     $sPrestamo = $selectPrestamo[0];
-    $Tecnico = new Tecnico();
-    $allTecnico = $Tecnico->seleccionarAllTecnico();
+    $Ingeniero = new Ingeniero();
+    $allIngeniero = $Ingeniero->seleccionarAllIngeniero();
     $msg = NULL;
 include 'view/verDetallePrestamo.php';
