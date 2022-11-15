@@ -14,8 +14,8 @@
     <div class="card-subtitle" id="Add">
         <label for="search">Filtrar búsqueda por: </label>
         <select name="forma" onchange="location = this.value;">
-            <option value="?c=detalleAllDispositivo" selected>Dispositivo</option>
-            <option value="?c=detalleAllTipoDispositivo">Tipo de Dispositivo</option>            
+            <option value="?c=detalleAllDispositivo" selected>Dispositivos</option>
+            <option value="?c=detalleAllTipoDispositivo">Tipos de Dispositivo</option>            
         </select>
         <!-- Icono filtro -->
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">

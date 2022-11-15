@@ -14,7 +14,7 @@
     <div class="card-subtitle" id="Add">
         <label for="search">Filtrar búsqueda por: </label>
         <select name="forma" onchange="location = this.value;">
-            <option value="?c=detalleAllPrestamo" >Préstamo</option>
+            <option value="?c=detalleAllPrestamo" >Todos los Préstamos</option>
             <option value="?c=detalleAllPrestamoDispositivo" selected>Préstamo de Dispositivo</option>
         </select>
         <!-- Icono filtro -->
