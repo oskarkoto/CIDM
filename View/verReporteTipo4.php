@@ -9,13 +9,13 @@
 </div>
 <div class="card" id="ListaCompleta">
     <div class="card-title">
-        <h2> INFORME DE TECNICO - PRESTAMOS - PERDIDAS </h2>
+        <h2> INFORME DE IGENIERO - PRESTAMOS - PERDIDAS </h2>
     </div>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">ID del Préstamo</th>
-                <th scope="col">ID del Técnico</th>
+                <th scope="col">ID del Ingeniero</th>
                 <th scope="col">Primer Nombre</th>
                 <th scope="col">Segundo Nombre</th>
                 <th scope="col">Primer Apellido</th>

@@ -28,9 +28,6 @@ if ($_POST) {
             case 5:
                 include "view/verReporteTipo5.php";
                 break;
-            case 6:
-                include "view/verReporteTipo6.php";
-                break;
         }
     } else {
         $msgError = "ERROR creando el Reporte.";

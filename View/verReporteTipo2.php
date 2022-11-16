@@ -15,7 +15,7 @@
         <thead>
             <tr>
                 <th scope="col">ID del Préstamo</th>
-                <th scope="col">ID del Técnico</th>
+                <th scope="col">ID del Ingeniero</th>
                 <th scope="col">Fecha del Préstamo</th>
                 <th scope="col">Fecha Esperada de Devolución</th>
                 <th scope="col">Cliente</th>

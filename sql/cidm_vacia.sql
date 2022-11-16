@@ -243,8 +243,8 @@ CREATE TABLE `tiporeporte` (
 INSERT INTO `tiporeporte` (`idTipoReporte`, `nombreTipoReporte`, `detalleTipoReporte`, `queryTipoReporte`) VALUES
 (1, 'Dispositivos Dañados', ' Detalla los dispositivos que se encuentran actualmente con un daño.', ''),
 (2, 'Préstamos Atrasados', 'Detalla los préstamos que sobrepasan la fecha prevista de devolución.', ''),
-(3, 'Informe de Técnico-Préstamos-Daños', 'Detalla los técnicos que han efectuado devoluciones con daños en el dispositivo.\r\n', ''),
-(4, 'Informe de Técnico-Préstamos-Pérdidas', 'Detalla los técnicos que han efectuado devoluciones con pérdidas o robos en el dispositivo.', ''),
+(3, 'Informe de Ingeniero-Préstamos-Daños', 'Detalla los técnicos que han efectuado devoluciones con daños en el dispositivo.\r\n', ''),
+(4, 'Informe de Ingeniero-Préstamos-Pérdidas', 'Detalla los técnicos que han efectuado devoluciones con pérdidas o robos en el dispositivo.', ''),
 (5, 'Dispositivos con Inventario Bajo', 'Detalla los tipos de dispositivo que tienen una cantidad de unidades en inventario menores a su cantidad mínima de existencias.', '');
 
 --
