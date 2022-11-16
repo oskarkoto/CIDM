@@ -143,7 +143,7 @@ class Reporte {
                 return $rows; 
                 break;
             case 5:
-                $query = "SELECT t.idTipoDispositivo, t.nombreTipoDispositivo, t.descripcionTipoDispositivo, t.marcaTipoDispositivo, t.existenciaMinima, (SELECT COUNT(*) FROM Dispositivo e WHERE e.idTipoDispositivo = t.idTipoDispositivo) as existenciaActual
+                $query = "SELECT DISTINCT t.idTipoDispositivo, t.nombreTipoDispositivo, t.descripcionTipoDispositivo, t.marcaTipoDispositivo, t.existenciaMinima, (SELECT COUNT(*) FROM Dispositivo e WHERE e.idTipoDispositivo = t.idTipoDispositivo) as existenciaActual
                     FROM tipoDispositivo t 
                     INNER JOIN Dispositivo e ON e.idTipoDispositivo = t.idTipoDispositivo 
                     WHERE t.existenciaMinima > (SELECT COUNT(*) FROM Dispositivo e WHERE e.idTipoDispositivo = t.idTipoDispositivo)";
