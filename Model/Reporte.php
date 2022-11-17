@@ -94,16 +94,15 @@ class Reporte {
                 return $rows; 
                 break;
             case 2:
-                $query = "SELECT prestamo.idPrestamo, idIngeniero, fechaPrestamo, fechaEsperadaDevolucion, cliente 
-                    FROM prestamo 
-                    INNER JOIN devolucion ON prestamo.idPrestamo=devolucion.idPrestamo 
-                    WHERE CURDATE() > fechaEsperadaDevolucion";
+                $query = "SELECT p.idPrestamo, p.idIngeniero, p.FechaPrestamo, p.fechaEsperadaDevolucion, p.cliente 
+                FROM prestamo p 
+                WHERE (CURDATE()>p.fechaEsperadaDevolucion) and p.estadoPrestamo = 'Abierto'";
                 $pdo = new Connection();
                 $pdo = $pdo->open();
                 $result = $pdo->query($query);
                 $rows = [];
                 foreach ($result->fetchAll() as $row) {
-                    $rows[] = new ReporteTipo2($row['idPrestamo'],$row['idIngeniero'],$row['fechaPrestamo'],
+                    $rows[] = new ReporteTipo2($row['idPrestamo'],$row['idIngeniero'],$row['FechaPrestamo'],
                     $row['fechaEsperadaDevolucion'],$row['cliente'],);
                 }
                 return $rows; 
@@ -130,7 +129,7 @@ class Reporte {
                     FROM ingeniero 
                     INNER JOIN prestamo ON ingeniero.idIngeniero = prestamo.idIngeniero 
                     INNER JOIN devolucion ON prestamo.idPrestamo = devolucion.idPrestamo
-                    WHERE devolucion.idEstadoDevolucionGeneral = 2";
+                    WHERE (devolucion.idEstadoDevolucionGeneral = 5) or (devolucion.idEstadoDevolucionGeneral = 6)";
                 $pdo = new Connection();
                 $pdo = $pdo->open();
                 $result = $pdo->query($query);

@@ -28,7 +28,7 @@
                 <label for="idDispositivo" class='label_form'>Dispositivo:  </label>
                 <select class="col-sm-2 col-form-label" name="idDispositivo" id="input_form" required>
                     <?php foreach ($allDispositivo as $Dispositivo) { foreach($allTipoDispositivo as $tipo) { if ($Dispositivo->idTipoDispositivo == $tipo->idTipoDispositivo && $Dispositivo->idEstadoInventario == 1) { ?>
-                        <option value="<?php echo $Dispositivo->idDispositivo; ?>"> <?php echo $tipo->nombreTipoDispositivo; ?></option>
+                        <option value="<?php echo $Dispositivo->idDispositivo; ?>"> <?php echo "$tipo->nombreTipoDispositivo - $Dispositivo->idDispositivo"; ?></option>
                     <?php } } } ?>
                 </select>
             </div>

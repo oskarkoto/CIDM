@@ -34,7 +34,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Técnico</th>
                 <th scope="col">Fecha Préstamo</th>
-                <th scope="col">Fecha Devolución</th>
+                <th scope="col">Estado</th>
                 <th scope="col">Cliente</th>
                 <th scope="col">Opciones</th>
             </tr>
@@ -49,7 +49,7 @@
                 <td><?php echo $ingeniero->primerNombre; ?> <?php echo $ingeniero->primerApellido; ?></td>
                 <?php } } ?>
                 <td><?php echo $value->fechaPrestamo; ?></td>
-                <td><?php echo $value->fechaEsperadaDevolucion; ?></td>
+                <td><?php echo $value->estadoPrestamo; ?></td>
                 <td><?php echo $value->cliente; ?></td>
                 <td>
                 <a class="ver" id="ver" href="?c=detallePrestamo&idPrestamo=<?php echo $value->idPrestamo; ?>">
