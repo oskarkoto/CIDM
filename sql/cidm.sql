@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2022 a las 20:34:08
+-- Tiempo de generación: 17-11-2022 a las 22:10:40
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -59,6 +59,25 @@ CREATE TABLE `devolucion` (
   `idEstadoDevolucionGeneral` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `devolucion`
+--
+
+INSERT INTO `devolucion` (`idDevolucion`, `idPrestamo`, `fechaRealDevolucion`, `idEstadoDevolucionGeneral`) VALUES
+(1, 1, '2022-11-17', 1),
+(2, 2, '2022-11-17', 1),
+(3, 3, '2022-11-17', 2),
+(4, 4, '2022-11-17', 6);
+
+--
+-- Disparadores `devolucion`
+--
+DELIMITER $$
+CREATE TRIGGER `estadoPrestamoDevolucion` AFTER INSERT ON `devolucion` FOR EACH ROW UPDATE prestamo p
+SET p.estadoPrestamo = "Cerrado" WHERE idPrestamo = NEW.idPrestamo
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -72,6 +91,34 @@ CREATE TABLE `dispositivo` (
   `idEstadoInventario` int(11) NOT NULL,
   `fechaInclusion` date DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `dispositivo`
+--
+
+INSERT INTO `dispositivo` (`idDispositivo`, `idTipoDispositivo`, `idCondicionActual`, `idEstadoInventario`, `fechaInclusion`) VALUES
+('AW8-1', 'AW8', 1, 1, '2022-11-15'),
+('AW8-2', 'AW8', 1, 1, '2022-11-15'),
+('AW8-3', 'AW8', 1, 1, '2022-11-17'),
+('AW8-4', 'AW8', 1, 1, '2022-11-17'),
+('AW8-5', 'AW8', 1, 1, '2022-11-17'),
+('IP13P-1', 'IP13P', 1, 1, '2022-11-15'),
+('IP13P-2', 'IP13P', 1, 1, '2022-11-15'),
+('IP13P-3', 'IP13P', 1, 1, '2022-11-15'),
+('IP13P-4', 'IP13P', 1, 1, '2022-11-15'),
+('IP13P-5', 'IP13P', 1, 1, '2022-11-15'),
+('IP13PM-1', 'IP13PM', 1, 1, '2022-11-17'),
+('IP13PM-2', 'IP13PM', 1, 1, '2022-11-17'),
+('IP13PM-3', 'IP13PM', 1, 1, '2022-11-17'),
+('IP14-1', 'IP14', 1, 1, '2022-11-17'),
+('IP14-2', 'IP14', 1, 1, '2022-11-17'),
+('IP14-3', 'IP14', 1, 1, '2022-11-17'),
+('IP14-4', 'IP14', 1, 1, '2022-11-17'),
+('IP14P-1', 'IP14P', 1, 1, '2022-11-17'),
+('IP14P-2', 'IP14P', 1, 1, '2022-11-17'),
+('IP14P-3', 'IP14P', 1, 1, '2022-11-17'),
+('IP14PM-1', 'IP14PM', 1, 1, '2022-11-17'),
+('IP14PM-2', 'IP14PM', 1, 1, '2022-11-17');
 
 -- --------------------------------------------------------
 
@@ -137,7 +184,8 @@ CREATE TABLE `estadoinventario` (
 INSERT INTO `estadoinventario` (`idEstadoInventario`, `descripcionEstadoInventario`) VALUES
 (1, 'Inventario'),
 (2, 'Prestado'),
-(3, 'Dañado');
+(3, 'Dañado'),
+(4, 'Robado/Perdido');
 
 -- --------------------------------------------------------
 
@@ -157,6 +205,16 @@ CREATE TABLE `ingeniero` (
   `fechaInclusion` date DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `ingeniero`
+--
+
+INSERT INTO `ingeniero` (`idIngeniero`, `primerNombre`, `segundoNombre`, `primerApellido`, `segundoApellido`, `telefono`, `correoElectronico`, `direccion`, `fechaInclusion`) VALUES
+('1', 'Mario', '', 'Martínez', 'Ulloa', '85649977', 'mario@ideliver-inc.com', 'Heredia', '2022-11-17'),
+('2', 'Andrea', 'María', 'Martínez', 'Castro', '75241236', 'andrea@ideliver-inc.com', 'Cartago', '2022-11-17'),
+('3', 'Sebastián', '', 'Rey', 'Salas', '87965412', 'sebastian@ideliver-inc.com', 'Heredia', '2022-11-17'),
+('4', 'Bernal', '', 'Chávez', 'Alpízar', '89632587', 'bernal@ideliver-inc.com', 'Cartago', '2022-11-17');
+
 -- --------------------------------------------------------
 
 --
@@ -168,8 +226,33 @@ CREATE TABLE `prestamo` (
   `idIngeniero` varchar(25) NOT NULL,
   `fechaPrestamo` date DEFAULT current_timestamp(),
   `fechaEsperadaDevolucion` date DEFAULT NULL,
-  `cliente` varchar(50) DEFAULT NULL
+  `cliente` varchar(50) DEFAULT NULL,
+  `estadoPrestamo` varchar(10) NOT NULL DEFAULT 'Abierto'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `prestamo`
+--
+
+INSERT INTO `prestamo` (`idPrestamo`, `idIngeniero`, `fechaPrestamo`, `fechaEsperadaDevolucion`, `cliente`, `estadoPrestamo`) VALUES
+(1, '1', '2022-11-17', '2022-11-17', 'TCH', 'Cerrado'),
+(2, '2', '2022-11-02', '2022-11-04', 'JCP', 'Cerrado'),
+(3, '3', '2022-11-03', '2022-11-05', 'ABC', 'Cerrado'),
+(4, '4', '2022-11-17', '2022-11-17', 'CMC', 'Cerrado');
+
+--
+-- Disparadores `prestamo`
+--
+DELIMITER $$
+CREATE TRIGGER `cambiarEstadoDispositivos` AFTER UPDATE ON `prestamo` FOR EACH ROW IF (NEW.estadoPrestamo = "Cerrado") THEN
+    UPDATE dispositivo d
+        INNER JOIN prestamodispositivo p 
+        ON d.idDispositivo = p.idDispositivo
+    SET d.idEstadoInventario = 1
+    WHERE p.idPrestamo = NEW.idPrestamo;
+END IF
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -185,14 +268,20 @@ CREATE TABLE `prestamodispositivo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `prestamodispositivo`
+--
+
+INSERT INTO `prestamodispositivo` (`idPrestamoDispositivo`, `idPrestamo`, `idDispositivo`, `idEstadoDevolucion`) VALUES
+(1, 1, 'AW8-1', 1),
+(2, 2, 'IP13P-1', 1),
+(3, 3, 'IP14-1', 1),
+(4, 4, 'AW8-2', 1);
+
+--
 -- Disparadores `prestamodispositivo`
 --
 DELIMITER $$
 CREATE TRIGGER `cambiarestadodispositivo` AFTER INSERT ON `prestamodispositivo` FOR EACH ROW UPDATE dispositivo SET idEstadoInventario = 2 WHERE idDispositivo = NEW.idDispositivo
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `devolverestadodispositivo` AFTER DELETE ON `prestamodispositivo` FOR EACH ROW UPDATE dispositivo SET idEstadoInventario = 1 WHERE idDispositivo = prestamodispositivo.idDispositivo
 $$
 DELIMITER ;
 
@@ -209,6 +298,13 @@ CREATE TABLE `reporte` (
   `fechaReporte` date DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `reporte`
+--
+
+INSERT INTO `reporte` (`idReporte`, `tituloReporte`, `idTipoReporte`, `fechaReporte`) VALUES
+(1, 'Reporte', 1, '2022-11-15');
+
 -- --------------------------------------------------------
 
 --
@@ -222,6 +318,18 @@ CREATE TABLE `tipodispositivo` (
   `marcaTipoDispositivo` varchar(50) DEFAULT NULL,
   `existenciaMinima` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tipodispositivo`
+--
+
+INSERT INTO `tipodispositivo` (`idTipoDispositivo`, `nombreTipoDispositivo`, `descripcionTipoDispositivo`, `marcaTipoDispositivo`, `existenciaMinima`) VALUES
+('AW8', 'Apple Watch Serie 8', 'Apple Watch Serie 8', 'Apple', 5),
+('IP13P', 'iPhone 13 Pro', 'Apple iPhone 13 Pro', 'Apple', 5),
+('IP13PM', 'iPhone 13 Pro Max', 'Apple iPhone 13 Pro Max', 'Apple', 5),
+('IP14', 'iPhone 14', 'iPhone 14 Standard', 'Apple', 5),
+('IP14P', 'iPhone 14 Pro', 'iPhone 14 Pro', 'Apple', 5),
+('IP14PM', 'iPhone 14 Pro Max', 'iPhone 14 Pro Max', 'Apple', 5);
 
 -- --------------------------------------------------------
 
@@ -243,8 +351,8 @@ CREATE TABLE `tiporeporte` (
 INSERT INTO `tiporeporte` (`idTipoReporte`, `nombreTipoReporte`, `detalleTipoReporte`, `queryTipoReporte`) VALUES
 (1, 'Dispositivos Dañados', ' Detalla los dispositivos que se encuentran actualmente con un daño.', ''),
 (2, 'Préstamos Atrasados', 'Detalla los préstamos que sobrepasan la fecha prevista de devolución.', ''),
-(3, 'Informe de Ingeniero-Préstamos-Daños', 'Detalla los técnicos que han efectuado devoluciones con daños en el dispositivo.\r\n', ''),
-(4, 'Informe de Ingeniero-Préstamos-Pérdidas', 'Detalla los técnicos que han efectuado devoluciones con pérdidas o robos en el dispositivo.', ''),
+(3, 'Informe de Ingeniero-Préstamos-Daños', 'Detalla los ingenieros que han efectuado devoluciones reportando daños en el dispositivo.\r\n', ''),
+(4, 'Informe de Ingeniero-Préstamos-Pérdidas', 'Detalla los ingenieros que han efectuado devoluciones reportando pérdidas o robos de dispositivo.', ''),
 (5, 'Dispositivos con Inventario Bajo', 'Detalla los tipos de dispositivo que tienen una cantidad de unidades en inventario menores a su cantidad mínima de existencias.', '');
 
 --
@@ -359,7 +467,7 @@ ALTER TABLE `condicionactual`
 -- AUTO_INCREMENT de la tabla `devolucion`
 --
 ALTER TABLE `devolucion`
-  MODIFY `idDevolucion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idDevolucion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `estadodevolucion`
@@ -377,25 +485,25 @@ ALTER TABLE `estadodevoluciongeneral`
 -- AUTO_INCREMENT de la tabla `estadoinventario`
 --
 ALTER TABLE `estadoinventario`
-  MODIFY `idEstadoInventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idEstadoInventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamo`
 --
 ALTER TABLE `prestamo`
-  MODIFY `idPrestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idPrestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamodispositivo`
 --
 ALTER TABLE `prestamodispositivo`
-  MODIFY `idPrestamoDispositivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idPrestamoDispositivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `tiporeporte`
