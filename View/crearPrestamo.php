@@ -16,7 +16,7 @@
             </div>                
             <div class="dropdown-divider" id="dropdown-divider-form"></div>
             <div class="col-md-12 col-xl-12 col-sm-12" >
-                <label for="idIngeniero" class='label_form'>Técnico responsable:  </label>
+                <label for="idIngeniero" class='label_form'>Ingeniero responsable:  </label>
                 <select class="col-sm-2 col-form-label" name="idIngeniero" id="input_form" required>
                 <?php foreach ($allIngeniero as $value) { ?>
                     <option value="<?php echo $value->idIngeniero; ?>"><?php echo $value->primerNombre; ?> <?php echo $value->primerApellido; ?></option>
